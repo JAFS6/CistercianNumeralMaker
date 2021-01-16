@@ -29,6 +29,21 @@ def getInput():
 
 def main():
     numberString = getInput()
+    number = int(numberString)
+
+    # Decompose the number in its units, tens, hundreds and thousands
+    decomposition = [numberString[len(numberString) - 1]]
+
+    if (number >= 10):
+        decomposition.append(numberString[len(numberString) - 2])
+
+    if (number >= 100):
+        decomposition.append(numberString[len(numberString) - 3])
+
+    if (number >= 1000):
+        decomposition.append(numberString[len(numberString) - 4])
+
+    print(decomposition)
 
 if __name__ == "__main__":
     main()

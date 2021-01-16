@@ -34,14 +34,9 @@ def main():
     # Decompose the number in its units, tens, hundreds and thousands
     decomposition = [numberString[len(numberString) - 1]]
 
-    if (number >= 10):
-        decomposition.append(numberString[len(numberString) - 2])
-
-    if (number >= 100):
-        decomposition.append(numberString[len(numberString) - 3])
-
-    if (number >= 1000):
-        decomposition.append(numberString[len(numberString) - 4])
+    for i in range(1, 4):
+        if (number >= pow(10, i)):
+            decomposition.append(numberString[len(numberString) - (i + 1)])
 
     print(decomposition)
 

@@ -14,16 +14,20 @@ def input_is_valid (input_string):
         return False
     return True
 
-def main():
+def getInput():
     print("\nWelcome to Cistercian Numeral Maker")
 
     input_string = "-1"
-
     while (not(input_is_valid(input_string))):
         print("Please enter a integer number on the range [0, 9999]")
         input_string = input()
 
     print("Introduced number is {}".format(input_string))
+
+    return int(input_string)
+
+def main():
+    number = getInput()
 
 if __name__ == "__main__":
     main()

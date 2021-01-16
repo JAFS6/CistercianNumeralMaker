@@ -27,8 +27,7 @@ def getInput():
 
     return inputString
 
-def main():
-    numberString = getInput()
+def getNumberDecomposition(numberString):
     number = int(numberString)
 
     # Decompose the number in its units, tens, hundreds and thousands
@@ -39,6 +38,10 @@ def main():
             decomposition.append(numberString[len(numberString) - (i + 1)])
 
     print(decomposition)
+
+def main():
+    inputString = getInput()
+    decomposition = getNumberDecomposition(inputString)
 
 if __name__ == "__main__":
     main()

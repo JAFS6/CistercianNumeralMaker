@@ -19,7 +19,8 @@ def getInput():
 
     input_string = "-1"
     while (not(input_is_valid(input_string))):
-        print("Please enter a integer number on the range [0, 9999]")
+        phrase = "Please enter a integer number on the range [{}, {}]"
+        print(phrase.format(LOWER_LIMIT, UPPER_LIMIT))
         input_string = input()
 
     print("Introduced number is {}".format(input_string))

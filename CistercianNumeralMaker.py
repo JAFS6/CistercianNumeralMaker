@@ -2,33 +2,33 @@
 LOWER_LIMIT = 0
 UPPER_LIMIT = 9999
 
-def input_is_valid (input_string):
-    if (not(input_string.isnumeric())):
+def inputIsValid (inputString):
+    if (not(inputString.isnumeric())):
         return False
-    input_integer = int(input_string)
-    if (not(isinstance(input_integer, int))):
+    inputInteger = int(inputString)
+    if (not(isinstance(inputInteger, int))):
         return False
-    if (input_integer < LOWER_LIMIT):
+    if (inputInteger < LOWER_LIMIT):
         return False
-    if (input_integer > UPPER_LIMIT):
+    if (inputInteger > UPPER_LIMIT):
         return False
     return True
 
 def getInput():
     print("\nWelcome to Cistercian Numeral Maker")
 
-    input_string = "-1"
-    while (not(input_is_valid(input_string))):
+    inputString = "-1"
+    while (not(inputIsValid(inputString))):
         phrase = "Please enter a integer number on the range [{}, {}]"
         print(phrase.format(LOWER_LIMIT, UPPER_LIMIT))
-        input_string = input()
+        inputString = input()
 
-    print("Introduced number is {}".format(input_string))
+    print("Introduced number is {}".format(inputString))
 
-    return int(input_string)
+    return inputString
 
 def main():
-    number = getInput()
+    numberString = getInput()
 
 if __name__ == "__main__":
     main()

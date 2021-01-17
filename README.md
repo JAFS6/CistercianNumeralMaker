@@ -21,9 +21,11 @@ You will be asked for the number to create and forced to input a valid integer o
 
 ## With arguments:
 
-```python CistercianNumeralMaker.py 1265 1357 2568 3546 4684 5846```
+```python CistercianNumeralMaker.py <arg1> <arg2> ... <argn>```
 
-The program will generate and save all asked numbers on the 'output' folder; the name of the image correspond to the number being represented.
+The program will generate and save all asked numbers on the 'output' folder; the name of the image correspond to the number being represented. All invalid arguments will be skipped.
+
+e.g. ```python CistercianNumeralMaker.py 1265 1357 2568 3546 4684 5846```
 
 # License
 This script is licensed under the [MIT License](https://github.com/JAFS6/CistercianNumeralMaker/blob/main/LICENSE).

@@ -58,17 +58,18 @@ def composeNumeralImage(decomposition):
         filename = "img/digit{}.png".format(i)
         unitsImages.append(Image.open(filename).convert('RGBA'))
 
-    if (decomposition[0] > 0):
-        out = Image.alpha_composite(out, unitsImages[(decomposition[0])-1])
-
-    if (len(decomposition) > 1 and decomposition[1] > 0):
-        out = Image.alpha_composite(out, ImageOps.mirror(unitsImages[(decomposition[1])-1]))
-
-    if (len(decomposition) > 2 and decomposition[2] > 0):
-        out = Image.alpha_composite(out, ImageOps.flip(unitsImages[(decomposition[2])-1]))
-
-    if (len(decomposition) > 3 and decomposition[3] > 0):
-        out = Image.alpha_composite(out, ImageOps.mirror(ImageOps.flip(unitsImages[(decomposition[3])-1])))
+    position = 0
+    for element in decomposition:
+        if (element > 0):
+            digitImage = unitsImages[(decomposition[position])-1]
+            if (position == 1):
+                digitImage = ImageOps.mirror(digitImage)
+            elif (position == 2):
+                digitImage = ImageOps.flip(digitImage)
+            elif (position == 3):
+                digitImage = ImageOps.mirror(ImageOps.flip(digitImage))
+            out = Image.alpha_composite(out, digitImage)
+        position += 1
 
     out.show()
     return out

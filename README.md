@@ -11,6 +11,14 @@ Some examples:
 
 ![Cistercian examples](img/Cistercian_examples.png)
 
+# Usage
+
+Execute the program:
+
+```python CistercianNumeralMaker.py```
+
+You will be asked for the number to create and your favourite image viewer program will be launched to show you the created image.
+
 # License
 This script is licensed under the [MIT License](https://github.com/JAFS6/CistercianNumeralMaker/blob/main/LICENSE).
 

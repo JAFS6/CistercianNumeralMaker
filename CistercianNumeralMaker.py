@@ -70,8 +70,6 @@ def composeNumeralImage(decomposition):
                 digitImage = ImageOps.mirror(ImageOps.flip(digitImage))
             out = Image.alpha_composite(out, digitImage)
         position += 1
-
-    out.show()
     return out
 
 def saveImage(image, name):
@@ -84,6 +82,7 @@ def main():
     inputString = getInput()
     decomposition = getNumberDecomposition(inputString)
     result = composeNumeralImage(numberString2Integers(decomposition))
+    result.show()
     saveImage(result, inputString)
 
 if __name__ == "__main__":

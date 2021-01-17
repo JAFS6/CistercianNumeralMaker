@@ -50,11 +50,11 @@ def numberString2Integers(list):
 
 def composeNumeralImage(decomposition):
     # Convert images on load to RGBA to make sure all image modes are the same
-    out = Image.open('digit0.png').convert('RGBA')
+    out = Image.open('img/digit0.png').convert('RGBA')
     unitsImages = []
 
     for i in range(1,10):
-        filename = "digit{}.png".format(i)
+        filename = "img/digit{}.png".format(i)
         unitsImages.append(Image.open(filename).convert('RGBA'))
 
     if (decomposition[0] > 0):

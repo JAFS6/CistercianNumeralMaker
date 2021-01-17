@@ -49,17 +49,13 @@ def numberString2Integers(list):
     return integerList
 
 def composeNumeralImage(decomposition):
-    background = Image.open('test_bg.png')
-    # Background image needs conversion to RGBA mode
-    background = background.convert('RGBA')
-    base = Image.open('test_0.png')
+    # Convert images on load to RGBA to make sure all image modes are the same
+    out = Image.open('digit0.png').convert('RGBA')
     unitsImages = []
 
     for i in range(1,10):
-        filename = "test_{}.png".format(i)
-        unitsImages.append(Image.open(filename))
-
-    out = Image.alpha_composite(background, base)
+        filename = "digit{}.png".format(i)
+        unitsImages.append(Image.open(filename).convert('RGBA'))
 
     if (decomposition[0] > 0):
         out = Image.alpha_composite(out, unitsImages[(decomposition[0])-1])

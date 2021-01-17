@@ -5,11 +5,11 @@ A description of this numeral system can be found on [this link to wikipedia](ht
 
 This system consist in represent a number by composition of its digits bearing in mind the position they occupy as units, tens, hundreds and thousands. The symbols for each digit on each position can be seen on the following image:
 
-![Cistercian digits](Cistercian_digits.png)
+![Cistercian digits](img/Cistercian_digits.png)
 
 Some examples:
 
-![Cistercian examples](Cistercian_examples.png)
+![Cistercian examples](img/Cistercian_examples.png)
 
 # License
 This script is licensed under the [MIT License](https://github.com/JAFS6/CistercianNumeralMaker/blob/main/LICENSE).

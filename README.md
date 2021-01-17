@@ -13,11 +13,17 @@ Some examples:
 
 # Usage
 
-Execute the program:
+## Without arguments:
 
 ```python CistercianNumeralMaker.py```
 
-You will be asked for the number to create and your favourite image viewer program will be launched to show you the created image. After the closing of the image viewer, the created image will be saved on the newly created 'output' folder; the name of the image correspond to the number being represented.
+You will be asked for the number to create and forced to input a valid integer on the valid range [0, 9999]. Your favourite image viewer program will be launched to show you the created image. After closing the image viewer, the created image will be saved on the 'output' folder; the name of the image correspond to the number being represented.
+
+## With arguments:
+
+```python CistercianNumeralMaker.py 1265 1357 2568 3546 4684 5846```
+
+The program will generate and save all asked numbers on the 'output' folder; the name of the image correspond to the number being represented.
 
 # License
 This script is licensed under the [MIT License](https://github.com/JAFS6/CistercianNumeralMaker/blob/main/LICENSE).

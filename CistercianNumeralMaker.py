@@ -30,7 +30,7 @@ def getInput():
 
     print("Introduced number is {}".format(inputString))
 
-    return inputString
+    return [inputString]
 
 def getNumberDecomposition(numberString):
     number = int(numberString)
@@ -79,11 +79,22 @@ def saveImage(image, name):
     image.save("{}/{}.png".format(outputFolderName, name))
 
 def main():
-    inputString = getInput()
-    decomposition = getNumberDecomposition(inputString)
-    result = composeNumeralImage(numberString2Integers(decomposition))
-    result.show()
-    saveImage(result, inputString)
+    gotParameters = False
+    inputStrings = []
+
+    if (len(sys.argv) > 1):
+        gotParameters = True
+        inputStrings = sys.argv[1:len(sys.argv)] # 1 to exclude program's name
+    else:
+        inputStrings = getInput()
+
+    for element in inputStrings:
+        if (inputIsValid(element)):
+            decomposition = getNumberDecomposition(element)
+            result = composeNumeralImage(numberString2Integers(decomposition))
+            if (not gotParameters):
+                result.show()
+            saveImage(result, element)
 
 if __name__ == "__main__":
     main()

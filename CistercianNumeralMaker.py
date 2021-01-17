@@ -36,8 +36,8 @@ def getNumberDecomposition(numberString):
     for i in range(1, 4):
         if (number >= pow(10, i)):
             decomposition.append(numberString[len(numberString) - (i + 1)])
+    return decomposition
 
-    print(decomposition)
 
 def main():
     inputString = getInput()

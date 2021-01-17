@@ -1,3 +1,4 @@
+import os
 import sys
 from PIL import Image
 from PIL import ImageOps
@@ -70,11 +71,19 @@ def composeNumeralImage(decomposition):
         out = Image.alpha_composite(out, ImageOps.mirror(ImageOps.flip(unitsImages[(decomposition[3])-1])))
 
     out.show()
+    return out
+
+def saveImage(image, name):
+    outputFolderName = "output"
+    if not os.path.exists(outputFolderName):
+        os.mkdir(outputFolderName)
+    image.save("{}/{}.png".format(outputFolderName, name))
 
 def main():
     inputString = getInput()
     decomposition = getNumberDecomposition(inputString)
-    composeNumeralImage(numberString2Integers(decomposition))
+    result = composeNumeralImage(numberString2Integers(decomposition))
+    saveImage(result, inputString)
 
 if __name__ == "__main__":
     main()

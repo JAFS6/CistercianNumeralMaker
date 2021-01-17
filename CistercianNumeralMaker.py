@@ -8,6 +8,9 @@ LOWER_LIMIT = 0
 UPPER_LIMIT = 9999
 
 def inputIsValid (inputString):
+    """Checks if the input is valid for the program.
+    Returns True if it is, False otherwise.
+    """
     if (not(inputString.isnumeric())):
         return False
     inputInteger = int(inputString)
@@ -20,6 +23,9 @@ def inputIsValid (inputString):
     return True
 
 def getInput():
+    """Gets user input through prompt.
+    Returns a list with a single string object.
+    """
     print("\nWelcome to Cistercian Numeral Maker")
 
     inputString = "-1"
@@ -33,9 +39,11 @@ def getInput():
     return [inputString]
 
 def getNumberDecomposition(numberString):
+    """Decomposes the number in its digits.
+    Returns a list of strings [units, tens, hundreds, thousands].
+    """
     number = int(numberString)
 
-    # Decompose the number in its units, tens, hundreds and thousands
     decomposition = [numberString[len(numberString) - 1]]
 
     for i in range(1, 4):
@@ -44,12 +52,25 @@ def getNumberDecomposition(numberString):
     return decomposition
 
 def numberString2Integers(list):
+    """Gets a list of strings and returns a list of the correspondant integers.
+    Returns the translated list.
+    """
     integerList = []
     for element in list:
         integerList.append(int(element))
     return integerList
 
 def composeNumeralImage(decomposition):
+    """Creates the image through alpha composition.
+    First it set the base image common to all numerals.
+    After that, it checks each position (units, tens, hundreds, thousands) to
+    add it correspondant image.
+    'Units' images are the base ones.
+    'Tens' images are a mirror over the 'units'.
+    'Hundreds' images are a flip over the 'units'.
+    'Thousands' images are a mirror of a flip over the 'units'.
+    Returns an Image object.
+    """
     # Convert images on load to RGBA to make sure all image modes are the same
     out = Image.open('img/digit0.png').convert('RGBA')
     unitsImages = []
@@ -73,12 +94,16 @@ def composeNumeralImage(decomposition):
     return out
 
 def saveImage(image, name):
+    """Saves the image to the output folder.
+    """
     outputFolderName = "output"
     if not os.path.exists(outputFolderName):
         os.mkdir(outputFolderName)
     image.save("{}/{}.png".format(outputFolderName, name))
 
 def main():
+    """Entry point of the program.
+    """
     gotParameters = False
     inputStrings = []
 

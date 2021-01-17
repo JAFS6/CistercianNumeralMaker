@@ -17,7 +17,7 @@ Execute the program:
 
 ```python CistercianNumeralMaker.py```
 
-You will be asked for the number to create and your favourite image viewer program will be launched to show you the created image.
+You will be asked for the number to create and your favourite image viewer program will be launched to show you the created image. After the closing of the image viewer, the created image will be saved on the newly created 'output' folder; the name of the image correspond to the number being represented.
 
 # License
 This script is licensed under the [MIT License](https://github.com/JAFS6/CistercianNumeralMaker/blob/main/LICENSE).

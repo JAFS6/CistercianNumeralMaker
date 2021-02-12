@@ -7,60 +7,65 @@ from PIL import ImageOps
 LOWER_LIMIT = 0
 UPPER_LIMIT = 9999
 
-def inputIsValid (inputString):
+
+def input_is_valid(input_string):
     """Checks if the input is valid for the program.
     Returns True if it is, False otherwise.
     """
-    if (not(inputString.isnumeric())):
+    if not (input_string.isnumeric()):
         return False
-    inputInteger = int(inputString)
-    if (not(isinstance(inputInteger, int))):
+    input_integer = int(input_string)
+    if not (isinstance(input_integer, int)):
         return False
-    if (inputInteger < LOWER_LIMIT):
+    if input_integer < LOWER_LIMIT:
         return False
-    if (inputInteger > UPPER_LIMIT):
+    if input_integer > UPPER_LIMIT:
         return False
     return True
 
-def getInput():
+
+def get_input():
     """Gets user input through prompt.
     Returns a list with a single string object.
     """
     print("\nWelcome to Cistercian Numeral Maker")
 
-    inputString = "-1"
-    while (not(inputIsValid(inputString))):
+    input_string = "-1"
+    while not (input_is_valid(input_string)):
         phrase = "Please enter a integer number on the range [{}, {}]"
         print(phrase.format(LOWER_LIMIT, UPPER_LIMIT))
-        inputString = input()
+        input_string = input()
 
-    print("Introduced number is {}".format(inputString))
+    print("Introduced number is {}".format(input_string))
 
-    return [inputString]
+    return [input_string]
 
-def getNumberDecomposition(numberString):
+
+def get_number_decomposition(number_string):
     """Decomposes the number in its digits.
     Returns a list of strings [units, tens, hundreds, thousands].
     """
-    number = int(numberString)
+    number = int(number_string)
 
-    decomposition = [numberString[len(numberString) - 1]]
+    decomposition = [number_string[len(number_string) - 1]]
 
     for i in range(1, 4):
-        if (number >= pow(10, i)):
-            decomposition.append(numberString[len(numberString) - (i + 1)])
+        if number >= pow(10, i):
+            decomposition.append(number_string[len(number_string) - (i + 1)])
     return decomposition
 
-def numberString2Integers(list):
+
+def number_string_2_integers(_list):
     """Gets a list of strings and returns a list of the correspondant integers.
     Returns the translated list.
     """
-    integerList = []
-    for element in list:
-        integerList.append(int(element))
-    return integerList
+    integer_list = []
+    for _int_str in _list:
+        integer_list.append(int(_int_str))
+    return integer_list
 
-def composeNumeralImage(decomposition):
+
+def composer_numeral_image(decomposition):
     """Creates the image through alpha composition.
     First it set the base image common to all numerals.
     After that, it checks each position (units, tens, hundreds, thousands) to
@@ -73,53 +78,55 @@ def composeNumeralImage(decomposition):
     """
     # Convert images on load to RGBA to make sure all image modes are the same
     out = Image.open('img/digit0.png').convert('RGBA')
-    unitsImages = []
+    units_images = []
 
-    for i in range(1,10):
+    for i in range(1, 10):
         filename = "img/digit{}.png".format(i)
-        unitsImages.append(Image.open(filename).convert('RGBA'))
+        units_images.append(Image.open(filename).convert('RGBA'))
 
     position = 0
     for element in decomposition:
-        if (element > 0):
-            digitImage = unitsImages[(decomposition[position])-1]
-            if (position == 1):
-                digitImage = ImageOps.mirror(digitImage)
-            elif (position == 2):
-                digitImage = ImageOps.flip(digitImage)
-            elif (position == 3):
-                digitImage = ImageOps.mirror(ImageOps.flip(digitImage))
-            out = Image.alpha_composite(out, digitImage)
+        if element > 0:
+            digit_image = units_images[(decomposition[position]) - 1]
+            if position == 1:
+                digit_image = ImageOps.mirror(digit_image)
+            elif position == 2:
+                digit_image = ImageOps.flip(digit_image)
+            elif position == 3:
+                digit_image = ImageOps.mirror(ImageOps.flip(digit_image))
+            out = Image.alpha_composite(out, digit_image)
         position += 1
     return out
 
-def saveImage(image, name):
+
+def save_image(image, name):
     """Saves the image to the output folder.
     """
-    outputFolderName = "output"
-    if not os.path.exists(outputFolderName):
-        os.mkdir(outputFolderName)
-    image.save("{}/{}.png".format(outputFolderName, name))
+    output_folder_name = "output"
+    if not os.path.exists(output_folder_name):
+        os.mkdir(output_folder_name)
+    image.save("{}/{}.png".format(output_folder_name, name))
+
 
 def main():
     """Entry point of the program.
     """
-    gotParameters = False
-    inputStrings = []
+    got_parameters = False
 
-    if (len(sys.argv) > 1):
-        gotParameters = True
-        inputStrings = sys.argv[1:len(sys.argv)] # 1 to exclude program's name
+    if len(sys.argv) > 1:
+        got_parameters = True
+        input_strings = sys.argv[1:len(sys.argv)]  # 1 to exclude program's name
     else:
-        inputStrings = getInput()
+        input_strings = get_input()
 
-    for element in inputStrings:
-        if (inputIsValid(element)):
-            decomposition = getNumberDecomposition(element)
-            result = composeNumeralImage(numberString2Integers(decomposition))
-            if (not gotParameters):
+    for element in input_strings:
+        if input_is_valid(element):
+            decomposition = get_number_decomposition(element)
+            result = composer_numeral_image(number_string_2_integers(decomposition))
+            if not got_parameters:
                 result.show()
-            saveImage(result, element)
+            save_image(result, element)
+
 
 if __name__ == "__main__":
     main()
